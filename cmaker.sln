@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMaker.Core", "CMaker.Core\CMaker.Core.csproj", "{27AC1CC8-6A2C-44F5-9214-56368843F9E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{C170077B-2701-4E83-A127-36DF9B8FDDE7}"
+ProjectSection(SolutionItems) = preProject
+	readme.md = readme.md
+EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMaker", "CMaker\CMaker.csproj", "{A180C589-5B8D-43F5-BF9A-7CA204ED456B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27AC1CC8-6A2C-44F5-9214-56368843F9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27AC1CC8-6A2C-44F5-9214-56368843F9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27AC1CC8-6A2C-44F5-9214-56368843F9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27AC1CC8-6A2C-44F5-9214-56368843F9E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A180C589-5B8D-43F5-BF9A-7CA204ED456B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A180C589-5B8D-43F5-BF9A-7CA204ED456B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A180C589-5B8D-43F5-BF9A-7CA204ED456B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A180C589-5B8D-43F5-BF9A-7CA204ED456B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

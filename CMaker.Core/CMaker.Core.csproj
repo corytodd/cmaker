@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <RootNamespace>CMaker.Core</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Templates\standard.template" />
+      <EmbeddedResource Include="Templates\standard.template" />
+    </ItemGroup>
+
+</Project>
