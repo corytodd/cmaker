@@ -35,6 +35,8 @@ like to base new projects on. There are two types of variables in the template.
 
 - CMAKER_PROJECT_NAME the user-provided project name
 
+- CMAKER_ROOT_NAMESPACE root namespace for C++ classes
+
 - CMAKER_NORMALIZED_NAME he user-provided project name with spaces removed
 
 - CMAKER_NORMALIZED_NAME_LOWER he user-provided project name with spaces removed in lower case 

@@ -14,6 +14,11 @@
         string ProjectName { get; set; }
         
         /// <summary>
+        /// Root namespace
+        /// </summary>
+        string Namespace { get; set; }
+        
+        /// <summary>
         /// Generate this project
         /// </summary>
         /// <param name="outPath">Directory to write project</param>

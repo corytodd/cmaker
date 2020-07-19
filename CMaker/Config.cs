@@ -32,6 +32,11 @@ namespace CMaker
                             next = s => project.ProjectName = s;
                             break;
 
+                        case "-n":
+                        case "--namespace":
+                            next = s => project.Namespace = s;
+                            break;
+
                         default:
                             throw new ArgumentException($"Unknown argument: {arg}");
                     }
@@ -52,7 +57,7 @@ namespace CMaker
         public static string Usage()
         {
             var sb = new StringBuilder();
-            sb.AppendLine("Usage: CMaker -p ProjectName");
+            sb.AppendLine("Usage: CMaker -p ProjectName -n Namespace");
 
             return sb.ToString();
         }

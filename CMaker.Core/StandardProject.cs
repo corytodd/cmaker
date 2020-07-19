@@ -13,6 +13,8 @@ namespace CMaker.Core
         /// <inheritdoc />
         public string ProjectName { get; set; } = "YourProject";
 
+        public string Namespace { get; set; } = "yourproject";
+
         /// <summary>
         /// Project name with no space which is required for some CMake values
         /// </summary>
@@ -124,6 +126,7 @@ namespace CMaker.Core
                 var rules = new List<Tuple<string, string>>
                 {
                     new Tuple<string, string>("%%CMAKER_PROJECT_NAME%%", ProjectName),
+                    new Tuple<string, string>("%%CMAKER_ROOT_NAMESPACE%%", Namespace),
                     new Tuple<string, string>("%%CMAKER_NORMALIZED_NAME%%", NormalizedProjectName),
                     new Tuple<string, string>("%%CMAKER_NORMALIZED_NAME_LOWER%%", NormalizedProjectName.ToLower()),
                     new Tuple<string, string>("%%CMAKER_DATE%%", dateString),
