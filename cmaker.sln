@@ -5,6 +5,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{C170077B-2701-4E83-A127-36DF9B8FDDE7}"
 ProjectSection(SolutionItems) = preProject
 	readme.md = readme.md
+	release.bat = release.bat
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMaker", "CMaker\CMaker.csproj", "{A180C589-5B8D-43F5-BF9A-7CA204ED456B}"

@@ -1,0 +1,1 @@
+dotnet publish CMaker -c Release -r win10-x64 -o build -p:PublishSingleFile=true

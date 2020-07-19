@@ -1,12 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
+        <SemVer>1.0.0.0</SemVer>
+        <Suffix/>
+        <LangVersion>latest</LangVersion>
+        <Year>2020</Year>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Version>$(SemVer)$(Suffix)</Version>
+        <AssemblyVersion>$(SemVer)</AssemblyVersion>
+        <FileVersion>$(SemVer)</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\CMaker.Core\CMaker.Core.csproj" />
     </ItemGroup>
-
+    
 </Project>
