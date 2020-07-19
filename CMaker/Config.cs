@@ -2,10 +2,20 @@ namespace CMaker
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using Core;
 
+    /// <summary>
+    /// Command line argument parser
+    /// </summary>
     public static class Config
     {
+        /// <summary>
+        /// Parses command lines args into a project configuration
+        /// </summary>
+        /// <param name="args">Program arguments</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">Thrown on unknown argument</exception>
         public static IRootProject Parse(IEnumerable<string> args)
         {
             var project = new StandardProject();
@@ -23,7 +33,7 @@ namespace CMaker
                             break;
 
                         default:
-                            throw new Exception($"Unknown argument: {arg}");
+                            throw new ArgumentException($"Unknown argument: {arg}");
                     }
                 }
                 else
@@ -33,6 +43,18 @@ namespace CMaker
             }
 
             return project;
+        }
+
+        /// <summary>
+        /// Return usage details
+        /// </summary>
+        /// <returns>Formatted usage string</returns>
+        public static string Usage()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine("Usage: CMaker -p ProjectName");
+
+            return sb.ToString();
         }
     }
 }

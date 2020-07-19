@@ -8,12 +8,12 @@
     {
         private static async Task Main(string[] args)
         {
-            var project = Config.Parse(args);
-
-            Console.WriteLine($"CMaker generating: {project}");
-
             try
             {
+                var project = Config.Parse(args);
+                
+                Console.WriteLine($"CMaker generating: {project}");
+
                 var result = await project.CreateAsync(Environment.CurrentDirectory);
 
                 switch (result)
@@ -27,7 +27,6 @@
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
-                
             }
             catch (Exception ex)
             {
