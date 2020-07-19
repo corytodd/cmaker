@@ -42,3 +42,20 @@ like to base new projects on. There are two types of variables in the template.
 - CMAKER_DATE Current date in format mm/dd/yyyy
     
 - CMAKER_CLI_NAME Normalized project name with "_cli" suffix
+
+
+## References
+
+Lots of time and effort have gone into making the best possible cmake structure. Here are the projects and 
+references that helped shape the standard template:
+
+- https://github.com/rpavlik/cmake-modules
+
+- https://github.com/robotology/how-to-export-cpp-library
+
+- https://cliutils.gitlab.io/modern-cmake/chapters/testing/googletest.html
+
+- https://github.com/halex2005/CMakeHelpers/blob/master/generate_product_version.cmake
+
+- Other inline references are marked in their respective files
+
