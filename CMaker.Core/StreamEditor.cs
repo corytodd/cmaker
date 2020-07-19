@@ -14,21 +14,34 @@ namespace CMaker.Core
     {
         private readonly string _filePath;
 
+        /// <summary>
+        /// Create a new editor for this file
+        /// </summary>
+        /// <param name="filePath">File to edit</param>
         public StreamEditor(string filePath)
         {
             _filePath = filePath;
         }
 
-        public Task Replace(string pattern, string with)
+        /// <summary>
+        /// Replace all occurrence of 'pattern' with 'replacement'
+        /// </summary>
+        /// <param name="pattern">string pattern</param>
+        /// <param name="replacement">string replacement</param>
+        public Task Replace(string pattern, string replacement)
         {
             var rules = new List<Tuple<string, string>>
             {
-                new Tuple<string, string>(pattern, with)
+                new Tuple<string, string>(pattern, replacement)
             };
 
             return ReplaceAll(rules);
         }
         
+        /// <summary>
+        /// Replace all patterns with their corresponding replacement
+        /// </summary>
+        /// <param name="rules">List of rules in the format 'pattern':'replace'</param>
         public async Task ReplaceAll(IEnumerable<Tuple<string, string>> rules)
         {
             var tempFile = await EditAsStream(rules);
@@ -38,6 +51,12 @@ namespace CMaker.Core
             File.Move(tempFile.Path, _filePath);
         }
 
+        /// <summary>
+        /// Perform stream edit on this file and return cached result. We use a temp file
+        /// to avoid reading the entire file into memory.
+        /// </summary>
+        /// <param name="rules">List of rules in the format 'pattern':'replace'</param>
+        /// <returns>Path to temporary file containing all edits</returns>
         private async Task<TempFile> EditAsStream(IEnumerable<Tuple<string, string>> rules)
         {
             var rulesList = rules.ToList();

@@ -12,10 +12,16 @@ namespace CMaker.Core
     /// </summary>
     public static class ZipHelper
     {
+        /// <summary>
+        /// List of embedded resources
+        /// </summary>
         private static readonly Lazy<HashSet<string>> AvailableResources =
             new Lazy<HashSet<string>>(() =>
                 new HashSet<string>(System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceNames()));
 
+        /// <summary>
+        /// Resource name for standard project template
+        /// </summary>
         public const string StandardTemplate = "CMaker.Core.Templates.standard.template";
 
         /// <summary>

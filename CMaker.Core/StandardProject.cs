@@ -5,20 +5,20 @@ namespace CMaker.Core
     using System.IO;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Standard template
+    /// </summary>
     public class StandardProject : IRootProject
     {
+        /// <inheritdoc />
         public string ProjectName { get; set; } = "YourProject";
 
         /// <summary>
-        /// No spaces
+        /// Project name with no space which is required for some CMake values
         /// </summary>
         private string NormalizedProjectName => ProjectName.Replace(" ", "");
-        
-        public override string ToString()
-        {
-            return ProjectName;
-        }
 
+        /// <inheritdoc />
         public async Task<CMakerResult> CreateAsync(string outPath)
         {
             var projectPath = Path.Combine(outPath, ProjectName);
@@ -40,6 +40,12 @@ namespace CMaker.Core
             return result;
         }
 
+        /// <summary>
+        /// Extract and inflate the project template
+        /// </summary>
+        /// <param name="outPath">Write template to this path</param>
+        /// <param name="projectPath">Give project directory this top-level name</param>
+        /// <returns>Result of initialization</returns>
         private async Task<CMakerResult> InitializeTemplate(string outPath, string projectPath)
         {
             if (Directory.Exists(projectPath))
@@ -56,11 +62,18 @@ namespace CMaker.Core
             return CMakerResult.Success;
         }
 
+        /// <summary>
+        /// Apply rename rules to all template files. All files that contain
+        /// a placeholder name are renamed based on the project name.
+        /// </summary>
+        /// <param name="projectRoot">Project directory</param>
+        /// <returns>Results of rename operation</returns>
         private CMakerResult ApplyRename(string projectRoot)
         {
             const string templatePattern = "*CMAKE_LIB_NAME*";
             const string templateName = "CMAKE_LIB_NAME";
 
+            // First rename all template directories
             foreach (var directory in Directory.GetDirectories(projectRoot, templatePattern,
                 SearchOption.AllDirectories))
             {
@@ -71,6 +84,7 @@ namespace CMaker.Core
                 di.MoveTo(newName);
             }
 
+            // Then rename all template files
             foreach (var file in Directory.GetFiles(projectRoot, templatePattern, SearchOption.AllDirectories))
             {
                 // Test files use all small case
@@ -84,11 +98,18 @@ namespace CMaker.Core
             return CMakerResult.Success;
         }
 
+        /// <summary>
+        /// Replace all CMaker variables in all project files with their calculated values
+        /// </summary>
+        /// <param name="projectRoot">Project directory</param>
+        /// <returns>Results of rename operation</returns>
         private async Task<CMakerResult> ReplaceTemplateValues(string projectRoot)
         {
+            // TODO exclusion files might need to be a global setting
             var excludeFiles = new HashSet<string>
                 {".clang-format", ".clang-tidy", ".gitignore", ".gitattributes", "product.ico", "logo.jpg"};
 
+            // month/day/year
             var dateString = DateTime.Now.ToShortDateString();
 
             // Get all files starting from the template root
@@ -116,5 +137,12 @@ namespace CMaker.Core
 
             return CMakerResult.Success;
         }
+        
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            return ProjectName;
+        }
+
     }
 }

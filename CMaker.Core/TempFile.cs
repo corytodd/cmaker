@@ -11,10 +11,17 @@ namespace CMaker.Core
     {
         private string _path;
 
+        /// <summary>
+        /// Create a new temp file with a random name in the standard temp directory
+        /// </summary>
         public TempFile() : this(System.IO.Path.GetTempFileName())
         {
         }
 
+        /// <summary>
+        /// Create a new temp file at the specified location
+        /// </summary>
+        /// <param name="path">Path to file to use as temp file</param>
         public TempFile(string path)
         {
             if (string.IsNullOrEmpty(path))
@@ -25,6 +32,10 @@ namespace CMaker.Core
             _path = path;
         }
 
+        /// <summary>
+        /// Full path to temp file
+        /// </summary>
+        /// <exception cref="ObjectDisposedException"></exception>
         public string Path
         {
             get
@@ -38,16 +49,22 @@ namespace CMaker.Core
             }
         }
 
+        /// <inheritdoc />
         ~TempFile()
         {
             Dispose(false);
         }
 
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
         }
-
+        
+        /// <summary>
+        /// Make a best effort attempt to delete this temp file
+        /// </summary>
+        /// <param name="disposing">true to apply finalization</param>
         private void Dispose(bool disposing)
         {
             if (disposing)
