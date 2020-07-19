@@ -76,7 +76,6 @@ namespace CMaker.Core
             await using var dest = new FileStream(temp.Path, FileMode.Create);
 
             await source.CopyToAsync(dest).ConfigureAwait(false);
-            ;
         }
 
         /// <summary>
