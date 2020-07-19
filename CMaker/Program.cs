@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Core;
 
     internal static class Program
     {
@@ -11,7 +12,27 @@
 
             Console.WriteLine($"CMaker generating: {project}");
 
-            await project.CreateAsync(Environment.CurrentDirectory);
+            try
+            {
+                var result = await project.CreateAsync(Environment.CurrentDirectory);
+
+                switch (result)
+                {
+                    case CMakerResult.Success:
+                        Console.WriteLine("Completed successfully");
+                        break;
+                    case CMakerResult.ProjectAlreadyExists:
+                        Console.WriteLine("Aborted, project directory already exists");
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"CMaker failed: {ex.Message}");
+            }
         }
     }
 }
