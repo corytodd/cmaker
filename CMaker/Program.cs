@@ -4,13 +4,24 @@
     using System.Threading.Tasks;
     using Core;
 
-    internal static class Program
+    class Program
     {
-        private static async Task Main(string[] args)
+        /// <summary>
+        ///     Generate a CMake template project
+        /// </summary>
+        /// <param name="projectName">Top-level name of project</param>
+        /// <param name="namespace">Outermost namespace in your project</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        static async Task<int> Main(string projectName, string @namespace)
         {
             try
             {
-                var project = Config.Parse(args);
+                var project = new StandardProject
+                {
+                    ProjectName = projectName,
+                    Namespace = @namespace
+                };
                 
                 Console.WriteLine($"CMaker generating: {project}");
 
@@ -20,10 +31,12 @@
                 {
                     case CMakerResult.Success:
                         Console.WriteLine("Completed successfully");
-                        break;
+                        return 0;
+                    
                     case CMakerResult.ProjectAlreadyExists:
                         Console.WriteLine("Aborted, project directory already exists");
-                        break;
+                        return 1;
+                    
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
@@ -31,6 +44,7 @@
             catch (Exception ex)
             {
                 Console.WriteLine($"CMaker failed: {ex.Message}");
+                return 0;
             }
         }
     }
